@@ -270,24 +270,570 @@ import "fmt"
 // }
 
 //* Tipe data Map
+// func main () {
+// 	person := map[string]string{
+// 		"name": "Kwon",
+// 		"address" : "Guandong",
+// 	}
+
+// 	fmt.Println(person["name"])
+// 	fmt.Println(person["address"])
+// 	fmt.Println(person)
+
+// 	book := make(map[string]string)
+// 	book["title"] = "Buku Golang"
+// 	book["author"] = "Kwon"
+// 	book["ups"] = "salah"
+
+// 	fmt.Println(book)
+
+// 	delete(book, "ups")
+
+// 	fmt.Println(book)
+// }
+
+//* If Expression
+// func main () {
+// name := "kwon"
+
+// if name == "kwon" {
+// 	fmt.Println("hello kwon")
+// }
+
+// if statemen
+// name := "Kwon"// true
+// name := "lee"// false
+// 	name := "yuli"// true
+
+// 	if name == "Kwon" {
+// 		fmt.Println("Hello kwon")
+// 	} else if name == "yuli" {
+// 		fmt.Println("hello yuli")
+// 	} else {
+// 		fmt.Println("Hi, boleh kenalan")
+// 	}
+
+// 	if length := len(name); length > 5 {
+// 		fmt.Println("nama terlalu panjang")
+// 	} else {
+// 		fmt.Println("Nama sudah benar")
+// 	}
+
+// }
+
+//* Switch Expression
+// func main ()  {
+// 	name := "Kwon"
+
+// 	switch name {
+// 	case "Kwon":
+// 		fmt.Println("Hello Kwon")
+// 	case "Yuli" :
+// 		fmt.Println("Hello yuli")
+// 	default:
+// 		fmt.Println("Hi, boleh kenalan?")
+// 	}
+
+// 	switch length := len(name); length > 5 {
+// 	case true:
+// 		fmt.Println("nama terlalu panjang")
+// 	case false:
+// 		fmt.Println("Nama sudah benar")
+// 	}
+
+// 	// sample 2
+// 	name = "namasas"
+// 	length := len(name)
+// 	switch {
+// 	case length > 10:
+// 		fmt.Println("nama terlalu panjang")
+// 	case length > 5:
+// 		fmt.Println("nama lumayan panjang")
+// 	default:
+// 		fmt.Println("Nama sudah benar")
+// 	}
+// }
+
+//* For Loops
+// func main()  {
+// counter := 1
+
+// for counter <= 10 {
+// 	fmt.Println("Perulangan ke", counter)
+// 	counter++
+// }
+
+// fmt.Println("Selesai")
+
+// cara lebih sederhana
+// for counter := 1; counter <= 10; counter++ {
+// 	fmt.Println("Perulangan ke", counter)
+// }
+
+// fmt.Println("Selesai")
+// sample 2 cara manual
+// 	names := []string{"kwon", "yuli", "anto"}
+// 	for i := 0; i < len(names); i++ {
+// 		fmt.Println(names[i])
+// 	}
+
+// 	// cara lebih praktis
+// 	for index, name := range names {
+// 		fmt.Println("Index", index, "=", name)
+// 	}
+
+// 	// tidak pakai index dan key-nya
+// 	for _, name := range names {
+// 		fmt.Println( name)
+// 	}
+// }
+
+//* Break & Continue
+// func main () {
+// break
+// for i := 0; i < 10; i++ {
+// 	if i == 5 {
+// 		break
+// 	}
+// 	fmt.Println("Perulangan ke", i)
+// }
+
+// continue
+// 	for i := 0; i < 10; i++ {
+// 		if i%2 == 0 {
+// 			continue
+// 		}
+// 		fmt.Println("Perulangan ke", i)
+// 	}
+// }
+
+//* Function
+// func sayHello() {
+// 	fmt.Println("Hello")
+// }
+// func main() {
+// 	sayHello()
+// 	sayHello()
+// }
+
+//* Function Parameter
+// func sayHelloTo(firstName string, lastName string) {
+// 	fmt.Println("Hello", firstName, lastName)
+// }
+
+// func main() {
+// 	sayHelloTo("Kwon", "Yuli")
+// 	sayHelloTo("Yuli", "Antos")
+// }
+
+//* Function Return Value
+// func getHello(name string) string {
+// 	hello := "Hello " + name
+// 	return hello
+// }
+
+// func main() {
+// 	result := getHello("kwon")
+// 	fmt.Println(result)
+
+// 	fmt.Println(getHello("echo1"))
+// 	fmt.Println(getHello("echo2"))
+// }
+
+//* return multiple values
+// func getFullName() (string, string) {
+// 	return "echo1", "echo2"
+// }
+
+// func main () {
+// firstName, lastName := getFullName()
+// fmt.Println(firstName, lastName)
+
+// 	firstName, _ := getFullName()
+// 	fmt.Println(firstName)
+// }
+
+//* Named Return Values
+// func getCompleteName() (firstName, middleName, lastName string) {
+// 	firstName = "Kwon"
+// 	middleName = "Yuli"
+// 	lastName = "Anto"
+
+// 	return firstName, middleName, lastName
+// }
+
+// func main() {
+// 	a, b, c := getCompleteName()
+// 	fmt.Println(a, b, c)
+// }
+
+//* Variadic Function
+// func sumAll(numbers ...int) int {
+// 	total := 0
+
+// 	for _, number := range numbers {
+// 		total += number
+// 	}
+
+// 	return total
+// }
+
+// func main() {
+// 	fmt.Println(sumAll(10, 10, 10))
+// 	fmt.Println(sumAll(10, 10, 10, 10))
+// 	fmt.Println((sumAll(10, 10, 10, 10, 10)))
+
+// 	numbers := []int{10, 10}
+// 	fmt.Println(sumAll(numbers...))
+// }
+
+//* Funtion Value
+// func getGoodBye(name string) string {
+// 	return "Good Bye " + name
+// }
+
+// func main() {
+// 	sample1 := getGoodBye
+// 	sample2 := getGoodBye
+
+// 	fmt.Println(sample1("echo1"))
+// 	fmt.Println(sample2("echo2"))
+// }
+
+//* Function as Parameter
+// type Filter func(string) string
+// func sayHelloWithFilter(name string, filter Filter) {
+// 	filteredName := filter(name)
+// 	fmt.Println("Hello", filteredName)
+// }
+
+// func spamFilter(name string) string {
+// 	if name == "Anjing" {
+// 		return "..."
+// 	} else {
+// 		return name
+// 	}
+// }
+
+// func main() {
+// 	sayHelloWithFilter("echo1", spamFilter)
+
+// 	filter := spamFilter("Anjing")
+// 	sayHelloWithFilter(filter, spamFilter)
+// }
+
+//* Anonymous Function
+// type Blacklist func(string) bool
+
+// func registerUser(name string, blacklist Blacklist) {
+// 	if blacklist(name) {
+// 		fmt.Println("You are blocked", name)
+// 	} else {
+// 		fmt.Println("Welcome", name)
+// 	}
+// }
+
+// func main() {
+// 	blacklist := func(name string) bool {
+// 		return name == "anjing"
+// 	}
+// 	registerUser("echo2", blacklist)
+
+// 	registerUser("anjing", func(name string) bool {
+// 		return name == "anjing"
+// 	})
+// }
+
+//* Recursive Function
+// func factorialLoop(value int) int {
+// 	result := 1
+
+// 	for i := value; i > 0; i-- {
+// 		result *= i
+// 	}
+
+// 	return result
+// }
+
+// func factorialRecursive(value int) int {
+// 	if value == 1 {
+// 		return 1
+// 	} else  {
+// 		return value * factorialRecursive(value-1)
+// 	}
+// }
+
+// func main() {
+// 	result := 10 * 9 * 8 * 7 * 6 * 5 * 4 * 3 * 2 * 1
+// 	fmt.Println(result)
+// 	fmt.Println(factorialLoop(10))
+// 	fmt.Println(factorialRecursive(10))
+// }
+
+//* Closure
+// func main() {
+// 	counter := 0
+
+// 	increment := func ()  {
+// 		fmt.Println("Increment")
+// 		counter++
+// 	}
+
+// 	increment()
+// 	increment()
+// 	increment()
+
+// 	fmt.Println(counter)
+// }
+
+//* Defer, Panic & Recover
+// defer
+// func logging() {
+// 	fmt.Println("Selesai memanggil function")
+// }
+
+// func runApplication() {
+// 	defer logging()
+// 	fmt.Println("Run application")
+// }
+
+// func main() {
+// 	runApplication()
+// }
+
+// panic
+// func endApp() {
+// 	fmt.Println("End app")
+// 	message := recover()
+// 	fmt.Println("terjadi panic", message)
+// }
+
+// func runApp(error bool) {
+// 	defer endApp()
+// 	if error {
+// 		panic("Ups Error")
+// 	}
+// }
+
+// func main() {
+// 	runApp(true)
+// 	fmt.Println("Echo1 echo2")
+// }
+
+//* Struct
+// type Customer struct {
+// 	Name, Address string
+// 	Age		int
+// }
+
+// func main() {
+// 	var yuli Customer
+// 	fmt.Println(yuli)
+
+// 	yuli.Name = "Kwon yuli"
+// 	yuli.Address = "Indonesia"
+// 	yuli.Age = 30
+// 	fmt.Println(yuli)
+// 	fmt.Println(yuli)
+// 	fmt.Println(yuli)
+// 	// akses satu persatu dengan cara dibawah ini :
+// 	fmt.Println(yuli.Name)
+// 	fmt.Println(yuli.Address)
+// 	fmt.Println(yuli.Age)
+
+// 	kwon := Customer{
+// 		Name: "Kwon",
+// 		Address: "Korea",
+// 		Age: 30,
+// 	}
+// 	fmt.Println(kwon)
+
+// 	zhao := Customer{"Zhao", "China", 30}
+// 	fmt.Println(zhao)
+// }
+
+//* Struct Method
+// type Customer struct {
+// 	Name, Address string
+// 	Age		int
+// }
+
+// func (customer Customer) sayHello(name string) {
+// 	fmt.Println("hello", name, "my name is ", customer.Name)
+// }
+
+// func main() {
+// 	var yuli Customer
+// 	fmt.Println(yuli)
+
+// 	yuli.Name = "Kwon yuli"
+// 	yuli.Address = "Indonesia"
+// 	yuli.Age = 30
+// 	fmt.Println(yuli)
+// 	fmt.Println(yuli)
+// 	fmt.Println(yuli)
+// 	// akses satu persatu dengan cara dibawah ini :
+// 	fmt.Println(yuli.Name)
+// 	fmt.Println(yuli.Address)
+// 	fmt.Println(yuli.Age)
+
+// 	kwon := Customer{
+// 		Name: "Kwon",
+// 		Address: "Korea",
+// 		Age: 30,
+// 	}
+// 	fmt.Println(kwon)
+
+// 	zhao := Customer{"Zhao", "China", 30}
+// 	fmt.Println(zhao)
+
+// 	zhao.sayHello("Anto")
+// 	kwon.sayHello("Anto")
+// 	yuli.sayHello("Anto")
+// }
+
+//* Interface
+// type HashName interface {
+// 	GetName() string
+// }
+
+// func SayHello(hashName HashName) {
+// 	fmt.Println("Hello", hashName.GetName())
+// }
+
+// type Person struct {
+// 	Name string
+// }
+
+// func (person Person) GetName() string {
+// 	return person.Name
+// }
+
+// type Animal struct {
+// 	Name string
+// }
+
+// func (animal Animal) GetName () string {
+// 	return animal.Name
+// }
+// func main () {
+// 	person := Person{Name: "Echo1"}
+// 	SayHello(person)
+
+// 	animal := Animal{Name: "Kucing"}
+// 	SayHello(animal)
+// }
+
+//* Interface Kosong (any)
+// func Ups() any {
+// return 1 //1
+// return true // true (boolean)
+// 	return "Ups" //Ups
+// }
+
+// func main() {
+// 	var Kosong = Ups()
+// 	fmt.Println(Kosong)
+// }
+
+//* Nil
+// func NewMap(name string) map[string]string {
+// 	if name == "" {
+// 		return nil
+// 	} else {
+// 		return map[string]string{
+// 			"name": name,
+// 		}
+// 	}
+// }
+
+// func main() {
+// 	data := NewMap("") // data masih kosong
+// data := NewMap("Ada data") // ada data
+
+// 	if data == nil {
+// 		fmt.Println("Data map masih kosong")
+// 		} else {
+
+// 			fmt.Println(data["name"])
+// 	}
+// }
+
+//* Type Assertions
+// func random() any {
+// return "OK"
+// return 1
+// 	return true
+// }
+
+// func main() {
+// 	var result = random()
+// 	// var resultString = result.(string)
+// 	// fmt.Println(resultString)
+// 	// var resultInt = result.(Int)
+// 	// fmt.Println(resultInt)
+
+// 	switch value := result.(type) {
+// 	case string:
+// 		fmt.Println("String", value)
+// 	case int:
+// 		fmt.Println("Int", value)
+// 	default:
+// 		fmt.Println("Unknown", value)
+// 	}
+
+// }
+
+//* Pointer
+// type Address struct {
+// 	City, Province, Country string
+// }
+
+// func main() {
+// address1 := Address{"Subang", "Jawa Barat", "Indonesia"}
+// address2 := address1 // copy value
+
+// address2.City = "Bandung"
+// fmt.Println(address1) // tidak berubah
+// fmt.Println(address2) // berubah menjadi Bandung
+
+// 	var address1 = Address{"Subang", "Jawa Barat", "Indonesia"}
+// 	var address2 = &address1 // pointer
+
+// 	address2.City = "Bandung"
+// 	fmt.Println(address1) // ikut berubah
+// 	fmt.Println(address2) // berubah menjadi Bandung
+// }
+
+//* Asterisk Opertor
+// type Address struct {
+// 	City, Province, Country string
+// }
+
+// func main() {
+// 	var address1 = Address{"Subang", "Jawa Barat", "Indonesia"}
+// 	var address2 = &address1 // pointer
+// 	address2.City = "Bandung"
+// 	fmt.Println(address1) // ikut berubah
+// 	fmt.Println(address2) // berubah menjadi Bandung
+
+// 	// address2 = &Address{"Jakarta", "DKI Jakarta", "Indonesia"}
+// 	*address2 = Address{"Jakarta", "DKI Jakarta", "Indonesia"}
+// 	fmt.Println(address1)
+// 	fmt.Println(address2)
+// }
+
+//* Operator New
+type Address struct {
+	City, Province, Country string
+}
+
 func main () {
-	person := map[string]string{
-		"name": "Kwon",
-		"address" : "Guandong",
-	}
+	var alamat1 = new(Address)
+	var alamat2 = alamat1
 
-	fmt.Println(person["name"])
-	fmt.Println(person["address"])
-	fmt.Println(person)
+	alamat2.Country = "Indonesia"
 
-	book := make(map[string]string)
-	book["title"] = "Buku Golang"
-	book["author"] = "Kwon"
-	book["ups"] = "salah"
-
-	fmt.Println(book)
-
-	delete(book, "ups")
-
-	fmt.Println(book)
+	fmt.Println(alamat1)
+	fmt.Println(alamat2)
 }
