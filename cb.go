@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	_ "golang-dasar/database"
+	_ "golang-dasar/helper"
+	_ "golang-dasar/internal"
+)
 
 //* Number
 // func main() {
@@ -824,16 +829,144 @@ import "fmt"
 // }
 
 //* Operator New
-type Address struct {
-	City, Province, Country string
+// type Address struct {
+// 	City, Province, Country string
+// }
+
+// func main () {
+// 	var alamat1 = new(Address)
+// 	var alamat2 = alamat1
+
+// 	alamat2.Country = "Indonesia"
+
+// 	fmt.Println(alamat1)
+// 	fmt.Println(alamat2)
+// }
+
+//* Pointer di Function
+// type Address struct {
+// 	CIty, Province, Country string
+// }
+
+// func ChangeCountryToIndonesia(address *Address) {
+// 	address.Country = "Indonesia"
+// }
+
+// func main() {
+// 	var address Address = Address{}
+// 	ChangeCountryToIndonesia(&address)
+
+// 	fmt.Println(address)
+// }
+
+//* Pointer di Method
+// type Man struct {
+// 	Name string
+// }
+
+// func (man *Man) Married(){
+// 	man.Name = "Mr. " + man.Name
+// }
+
+// func main() {
+// 	echo1 := Man{"Echo1"}
+// 	echo1.Married()
+
+// 	fmt.Println(echo1.Name)
+// }
+
+//* Package dan import
+// func main() {
+// 	result := helper.SayHello("Echo1")
+// 	fmt.Println(result)
+// }
+
+//* Access Modifier
+// func main() {
+// 	result := helper.SayHello("Echo1")
+// 	fmt.Println(result)
+
+// 	fmt.Println(helper.Application)
+// fmt.Println(helper.version) // tidak bisa diakses
+// fmt.Println(helper.sayGoodBye("Echo1")) // tidak bisa diakses
+// }
+
+//* Package Initialization
+// func main() {
+// 	fmt.Println(database.GetDatabase())
+// }
+
+//* Error
+// func Pembagian(nilai int, pembagi int) (int, error) {
+// 	if pembagi == 0 {
+// 		return 0, errors.New("Pembagian Dengan NOL")
+// 	} else {
+// 		return nilai / pembagi, nil
+// 	}
+// }
+
+// func main() {
+// 	hasil, err := Pembagian(100, 0) // Error Pembagian Dengan NOL
+// 	// hasil, err := Pembagian(100, 10) // Hasil 10
+// 	if err == nil {
+// 		fmt.Println("Hasil", hasil)
+// 	} else {
+// 		fmt.Println("Error", err.Error())
+// 	}
+// }
+
+//* Membuat Custom Error
+type validationError struct {
+	Message string
 }
 
-func main () {
-	var alamat1 = new(Address)
-	var alamat2 = alamat1
+func (v *validationError) Error() string {
+	return v.Message
+}
 
-	alamat2.Country = "Indonesia"
+type notFoundError struct {
+	Message string
+}
 
-	fmt.Println(alamat1)
-	fmt.Println(alamat2)
+func (n *notFoundError) Error() string {
+	return n.Message
+}
+
+func SaveData(id string, ) error {
+	if id == "" {
+		return &validationError{"validation error"}
+	}
+
+	if id != "Echo1" {
+		return &notFoundError{"data not found"}
+	}
+	// ok
+	return nil
+}
+
+func main() {
+	// err := SaveData("")// error
+	err := SaveData("Echo1")// sukses
+	if err != nil {
+		// terjadi error
+		// if validationErr, ok := err.(*validationError); ok {
+		// 	fmt.Println("validation error", validationErr.Error())
+		// } else if notFoundErr, ok := err.(*notFoundError); ok {
+		// 	fmt.Println("not found error:", notFoundErr.Error())
+		// } else {
+		// 	fmt.Println("unknown error:", err.Error())
+		// }
+
+		switch finalError := err.(type) {
+		case *validationError:
+			fmt.Println("validation error:", finalError.Error())
+		case *notFoundError:
+			fmt.Println("not found error", finalError.Error())
+		default:
+			fmt.Println("unknown error", finalError.Error())
+		}
+	} else {
+		// sukses
+		fmt.Println("Sukses")
+	}
 }
